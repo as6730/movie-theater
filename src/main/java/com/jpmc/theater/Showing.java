@@ -25,15 +25,11 @@ public class Showing {
     return this.sequenceOfTheDay == sequence;
   }
 
-  public double getMovieFee() {
-    return this.movie.getTicketPrice();
-  }
-
   public int getSequenceOfTheDay() {
     return this.sequenceOfTheDay;
   }
 
-  private double calculateFee(int numTickets) {
+  public double calculateCharge(int numTickets) {
     return this.movie.calculateTicketPrice(this) * numTickets;
   }
 }

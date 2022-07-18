@@ -12,7 +12,7 @@ public class TheaterTests {
     Customer john = new Customer("John Doe", "id-12345");
     Reservation reservation = theater.reserve(john, 2, 4);
 
-    assertEquals(reservation.totalFee(), 50);
+    assertEquals(40, reservation.totalFee());
   }
 
   @Test

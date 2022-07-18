@@ -12,6 +12,6 @@ public class Reservation {
   }
 
   public double totalFee() {
-    return this.showing.getMovieFee() * this.numTickets;
+    return this.showing.calculateCharge(this.numTickets);
   }
 }

@@ -49,7 +49,7 @@ public class Theater {
     System.out.println("===================================================");
     this.schedule.forEach(s -> System.out
         .println(s.getSequenceOfTheDay() + ": " + s.getStartTime() + " " + s.getMovie().getTitle()
-            + " " + humanReadableFormat(s.getMovie().getRunningTime()) + " $" + s.getMovieFee()));
+            + " " + humanReadableFormat(s.getMovie().getRunningTime()) + " $" + s.calculateCharge(1)));
     System.out.println("===================================================");
   }
 
