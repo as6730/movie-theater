@@ -12,6 +12,6 @@ public class Reservation {
   }
 
   public double totalFee() {
-    return showing.getMovieFee() * numTickets;
+    return this.showing.getMovieFee() * this.numTickets;
   }
 }

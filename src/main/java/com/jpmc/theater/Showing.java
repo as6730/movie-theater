@@ -14,11 +14,11 @@ public class Showing {
   }
 
   public Movie getMovie() {
-    return movie;
+    return this.movie;
   }
 
   public LocalDateTime getStartTime() {
-    return showStartTime;
+    return this.showStartTime;
   }
 
   public boolean isSequence(int sequence) {
@@ -26,14 +26,14 @@ public class Showing {
   }
 
   public double getMovieFee() {
-    return movie.getTicketPrice();
+    return this.movie.getTicketPrice();
   }
 
   public int getSequenceOfTheDay() {
-    return sequenceOfTheDay;
+    return this.sequenceOfTheDay;
   }
 
   private double calculateFee(int numTickets) {
-    return movie.calculateTicketPrice(this) * numTickets;
+    return this.movie.calculateTicketPrice(this) * numTickets;
   }
 }

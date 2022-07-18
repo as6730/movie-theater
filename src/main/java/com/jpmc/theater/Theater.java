@@ -17,7 +17,7 @@ public class Theater {
     Movie theBatMan = new Movie("The Batman", Duration.ofMinutes(95), 9, 0);
     LocalDate now = LocalDate.now();
 
-    schedule = List.of(
+    this.schedule = List.of(
       new Showing(turningRed, 1, LocalDateTime.of(now, LocalTime.of(9, 0))),
       new Showing(spiderMan, 2, LocalDateTime.of(now, LocalTime.of(11, 0))),
       new Showing(theBatMan, 3, LocalDateTime.of(now, LocalTime.of(12, 50))),
@@ -34,7 +34,7 @@ public class Theater {
     Showing showing;
 
     try {
-      showing = schedule.get(sequence - 1);
+      showing = this.schedule.get(sequence - 1);
     } catch (RuntimeException ex) {
       ex.printStackTrace();
       throw new IllegalStateException(
@@ -47,7 +47,7 @@ public class Theater {
   public void printSchedule() {
     System.out.println(LocalDate.now());
     System.out.println("===================================================");
-    schedule.forEach(s -> System.out
+    this.schedule.forEach(s -> System.out
         .println(s.getSequenceOfTheDay() + ": " + s.getStartTime() + " " + s.getMovie().getTitle()
             + " " + humanReadableFormat(s.getMovie().getRunningTime()) + " $" + s.getMovieFee()));
     System.out.println("===================================================");
