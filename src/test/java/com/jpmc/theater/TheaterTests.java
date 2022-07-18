@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class TheaterTests {
   @Test
   void totalFeeForCustomer() {
-    Theater theater = new Theater(LocalDateProvider.singleton());
+    Theater theater = new Theater();
     Customer john = new Customer("John Doe", "id-12345");
     Reservation reservation = theater.reserve(john, 2, 4);
 
@@ -17,7 +17,7 @@ public class TheaterTests {
 
   @Test
   void throwsErrorWhenNoShowing() {
-    Theater theater = new Theater(LocalDateProvider.singleton());
+    Theater theater = new Theater();
     Customer john = new Customer("John Doe", "id-12345");
 
     assertThrows(
@@ -29,7 +29,7 @@ public class TheaterTests {
 
   @Test
   void printMovieSchedule() {
-    Theater theater = new Theater(LocalDateProvider.singleton());
+    Theater theater = new Theater();
     theater.printSchedule();
   }
 }
