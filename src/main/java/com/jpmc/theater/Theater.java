@@ -30,7 +30,7 @@ public class Theater {
     );
   }
 
-  public Reservation reserve(Customer customer, int sequence, int howManyTickets) {
+  public Reservation reserve(Customer customer, int sequence, int numTickets) {
     Showing showing;
 
     try {
@@ -41,7 +41,7 @@ public class Theater {
           "not able to find any showing for given sequence " + sequence);
     }
 
-    return new Reservation(customer, showing, howManyTickets);
+    return new Reservation(customer, showing, numTickets);
   }
 
   public void printSchedule() {
