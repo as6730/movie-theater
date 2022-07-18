@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.Month;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class MovieTests {
   Movie SPIDERMAN = new Movie("Spider-Man: No Way Home", Duration.ofMinutes(90), 12.5, 1);
@@ -46,5 +47,40 @@ public class MovieTests {
     Showing showing = new Showing(SPIDERMAN, 1, TIME);
 
     assertEquals(9.5, SPIDERMAN.calculateTicketPrice(showing));
+  }
+
+  @Test
+  void equals() {
+    Movie spidermanCopy = new Movie("Spider-Man: No Way Home", Duration.ofMinutes(90), 12.5, 1);
+    assertEquals(SPIDERMAN, SPIDERMAN);
+    assertEquals(SPIDERMAN, spidermanCopy);
+  }
+  
+  @Test
+  void notEqualsTitle() {
+    Movie movie1 = new Movie("movie1", Duration.ofMinutes(90), 1, 1);
+    Movie movie2 = new Movie("movie2", Duration.ofMinutes(90), 1, 1);
+    assertNotEquals(movie1, movie2);
+  }
+
+  @Test
+  void notEqualsRunningTime() {
+    Movie movie1 = new Movie("movie", Duration.ofMinutes(1), 1, 1);
+    Movie movie2 = new Movie("movie", Duration.ofMinutes(2), 1, 1);
+    assertNotEquals(movie1, movie2);
+  }
+
+  @Test
+  void notEqualsTicketPrice() {
+    Movie movie1 = new Movie("movie", Duration.ofMinutes(1), 1, 1);
+    Movie movie2 = new Movie("movie", Duration.ofMinutes(1), 2, 1);
+    assertNotEquals(movie1, movie2);
+  }
+
+  @Test
+  void notEqualsTicketSpecialCode() {
+    Movie movie1 = new Movie("movie", Duration.ofMinutes(1), 1, 1);
+    Movie movie2 = new Movie("movie", Duration.ofMinutes(1), 1, 2);
+    assertNotEquals(movie1, movie2);
   }
 }
