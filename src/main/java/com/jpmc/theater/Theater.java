@@ -1,11 +1,11 @@
 package com.jpmc.theater;
-
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class Theater {
 
@@ -49,29 +49,23 @@ public class Theater {
     System.out.println("===================================================");
     this.schedule.forEach(s -> System.out
         .println(s.getSequenceOfTheDay() + ": " + s.getStartTime() + " " + s.getMovie().getTitle()
-            + " " + humanReadableFormat(s.getMovie().getRunningTime()) + " $" + s.calculateCharge(1)));
+            + " " + TheaterUtils.humanReadableFormat(s.getMovie().getRunningTime()) + " $" + s.calculateCharge(1)));
     System.out.println("===================================================");
   }
 
-  public String humanReadableFormat(Duration duration) {
-    long hour = duration.toHours();
-    long remainingMin = duration.toMinutes() - TimeUnit.HOURS.toMinutes(duration.toHours());
+  public void printScheduleJson() {
+    GsonBuilder builder = new GsonBuilder();
+    builder.registerTypeAdapter(Showing.class, new ShowingAdapter());
+    builder.setPrettyPrinting();
 
-    return String.format("(%s hour%s %s minute%s)", hour, handlePlural(hour), remainingMin,
-        handlePlural(remainingMin));
-  }
+    Gson gson = builder.create();
 
-  // (s) postfix should be added to handle plural correctly
-  private String handlePlural(long value) {
-    if (value == 1) {
-      return "";
-    } else {
-      return "s";
-    }
+    System.out.println(gson.toJson(this));  
   }
 
   public static void main(String[] args) {
     Theater theater = new Theater();
     theater.printSchedule();
+    theater.printScheduleJson();
   }
 }
