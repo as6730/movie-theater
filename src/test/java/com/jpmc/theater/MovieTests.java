@@ -13,12 +13,28 @@ public class MovieTests {
   Movie THE_BATMAN = new Movie("The Batman", Duration.ofMinutes(95), 9, 0);
 
   LocalDateTime TIME = LocalDateTime.of(2022, Month.JULY, 1, 19, 30, 40);
+  LocalDateTime AFTERNOON_DISCOUNT_ENDS_ON_HR = LocalDateTime.of(2022, Month.JULY, 1, 16, 00, 00);
+  LocalDateTime SEVENTH_DAY_DISCOUNT_TIME = LocalDateTime.of(2022, Month.JULY, 7, 19, 30, 40);
 
   @Test
   void noDiscountApplied() {
     Showing showing = new Showing(THE_BATMAN, 9, TIME);
 
     assertEquals(9, THE_BATMAN.calculateTicketPrice(showing));
+  }
+
+  @Test
+  void specialDayDiscount() {
+    Showing showing = new Showing(THE_BATMAN, 9, SEVENTH_DAY_DISCOUNT_TIME);
+
+    assertEquals(8, THE_BATMAN.calculateTicketPrice(showing));
+  }
+
+  @Test
+  void movieWithAfternoonDiscount() {
+    Showing showing = new Showing(TURNING_RED, 5, AFTERNOON_DISCOUNT_ENDS_ON_HR);
+
+    assertEquals(8.25, TURNING_RED.calculateTicketPrice(showing));
   }
 
   @Test
